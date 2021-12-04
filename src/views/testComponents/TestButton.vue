@@ -33,12 +33,8 @@
           ><!--  gutter推荐使用 (16+8n)px,gutter数组形式 [水平间距, 垂直间距] -->
             <a-col :span="auto" :offset="0">
               <SearchOutline></SearchOutline>
-              <a-icon type="area-chart" :style="{ fontSize: '20px', color: 'red' }" />
-              <a-button type="primary" shape="circle" icon="search">
-                <!--     <template
-                  #icon
-                ><a-icon type="search" :style="{ fontSize: '20px', color: '#000' }" /></template> --></a-button
-            ></a-col
+              <a-button type="primary" shape="circle" icon="search" block></a-button
+              ></a-col
             >
           </a-row>
         </a-col>
