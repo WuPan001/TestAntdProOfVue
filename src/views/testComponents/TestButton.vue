@@ -24,7 +24,7 @@
         <a-col :span="24" :offset="0" :order="1">
           <a-row
             type="flex"
-            justify="space-between"
+            justify="start"
             align="middle"
             :gutter="[
               { xs: 8, sm: 8, md: 8, lg: 8 },
@@ -32,10 +32,37 @@
             ]"
           ><!--  gutter推荐使用 (16+8n)px,gutter数组形式 [水平间距, 垂直间距] -->
             <a-col :span="auto" :offset="0">
-              <SearchOutline></SearchOutline>
-              <a-button type="primary" shape="circle" icon="search" block></a-button
-              ></a-col
+              <a-button
+                type="primary"
+                shape="round"
+                icon="search"
+                :loading="loading"
+                size="default"
+                block
+                @click="handleClickEvent"
+              >查询</a-button
+              >
+            </a-col>
+            <a-clo
+              :span="auto"
+            ><a-button
+              type="primary"
+              shape="round"
+              icon="search"
+              :loading="loading"
+              size="default"
+              block
+              @click="handleClickEvent"
+            >查询</a-button
+            ></a-clo
             >
+            <a-col :span="12">
+              <a-radio-group :value="size" @change="handleSizeChange">
+                <a-radio-button value="value1"> value1 </a-radio-button>
+                <a-radio-button value="value2"> value2 </a-radio-button>
+                <a-radio-button value="value3"> value3 </a-radio-button>
+              </a-radio-group>
+            </a-col>
           </a-row>
         </a-col>
         <a-col :span="24" :offset="0" :order="1">
