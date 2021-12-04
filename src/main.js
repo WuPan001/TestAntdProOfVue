@@ -9,6 +9,7 @@ import store from './store/'
 import i18n from './locales'
 import { VueAxios } from './utils/request'
 import ProLayout, { PageHeaderWrapper } from '@ant-design-vue/pro-layout'
+
 import themePluginConfig from '../config/themePluginConfig'
 
 // mock
@@ -38,5 +39,5 @@ new Vue({
   i18n,
   // init localstorage, vuex, Logo message
   created: bootstrap,
-  render: h => h(App)
+  render: (h) => h(App)
 }).$mount('#app')
