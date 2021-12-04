@@ -12,7 +12,7 @@ export const asyncRouterMap = [
     path: '/',
     name: 'index',
     component: BasicLayout,
-    meta: { title: 'menu.home' },
+    meta: { title: 'menu.home', permission: ['dashboard'] },
     redirect: '/dashboard/workplace',
     children: [
       // dashboard
@@ -21,8 +21,15 @@ export const asyncRouterMap = [
         name: 'dashboard',
         redirect: '/dashboard/workplace',
         component: RouteView,
-        meta: { title: 'menu.dashboard', keepAlive: true, icon: bxAnaalyse, permission: ['dashboard'] },
+        meta: { title: 'menu.dashboard', keepAlive: false, icon: bxAnaalyse, permission: ['dashboard'] },
         children: [
+          {
+            path: '/dashboard/workplace',
+            name: 'Workplace',
+            component: () => import('@/views/dashboard/Workplace'),
+            meta: { title: 'menu.dashboard.workplace', keepAlive: false, permission: ['dashboard'] }
+          },
+
           {
             path: '/dashboard/analysis/:pageNo([1-9]\\d*)?',
             name: 'Analysis',
@@ -34,12 +41,22 @@ export const asyncRouterMap = [
             path: 'https://www.baidu.com/',
             name: 'Monitor',
             meta: { title: 'menu.dashboard.monitor', target: '_blank' }
-          },
+          }
+        ]
+      },
+      // testComponents
+      {
+        path: '/testcomponents',
+        name: 'TestComponents',
+        redirect: '/testcomponents/testbutton',
+        component: RouteView,
+        meta: { title: '组件测试', keepAlive: false, icon: bxAnaalyse, permission: ['testcomponents'] },
+        children: [
           {
-            path: '/dashboard/workplace',
-            name: 'Workplace',
-            component: () => import('@/views/dashboard/Workplace'),
-            meta: { title: 'menu.dashboard.workplace', keepAlive: true, permission: ['dashboard'] }
+            path: '/testcomponents/testbutton',
+            name: 'testbutton',
+            component: () => import('@/views/testComponents/TestButton'),
+            meta: { title: '按钮测试', keepAlive: false, permission: ['testcomponents'] }
           }
         ]
       },
@@ -54,19 +71,19 @@ export const asyncRouterMap = [
             path: '/form/base-form',
             name: 'BaseForm',
             component: () => import('@/views/form/basicForm'),
-            meta: { title: 'menu.form.basic-form', keepAlive: true, permission: ['form'] }
+            meta: { title: 'menu.form.basic-form', keepAlive: false, permission: ['form'] }
           },
           {
             path: '/form/step-form',
             name: 'StepForm',
             component: () => import('@/views/form/stepForm/StepForm'),
-            meta: { title: 'menu.form.step-form', keepAlive: true, permission: ['form'] }
+            meta: { title: 'menu.form.step-form', keepAlive: false, permission: ['form'] }
           },
           {
             path: '/form/advanced-form',
             name: 'AdvanceForm',
             component: () => import('@/views/form/advancedForm/AdvancedForm'),
-            meta: { title: 'menu.form.advanced-form', keepAlive: true, permission: ['form'] }
+            meta: { title: 'menu.form.advanced-form', keepAlive: false, permission: ['form'] }
           }
         ]
       },
@@ -83,26 +100,26 @@ export const asyncRouterMap = [
             name: 'TableListWrapper',
             hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
             component: () => import('@/views/list/TableList'),
-            meta: { title: 'menu.list.table-list', keepAlive: true, permission: ['table'] }
+            meta: { title: 'menu.list.table-list', keepAlive: false, permission: ['table'] }
           },
           {
             path: '/list/basic-list',
             name: 'BasicList',
             component: () => import('@/views/list/BasicList'),
-            meta: { title: 'menu.list.basic-list', keepAlive: true, permission: ['table'] }
+            meta: { title: 'menu.list.basic-list', keepAlive: false, permission: ['table'] }
           },
           {
             path: '/list/card',
             name: 'CardList',
             component: () => import('@/views/list/CardList'),
-            meta: { title: 'menu.list.card-list', keepAlive: true, permission: ['table'] }
+            meta: { title: 'menu.list.card-list', keepAlive: false, permission: ['table'] }
           },
           {
             path: '/list/search',
             name: 'SearchList',
             component: () => import('@/views/list/search/SearchLayout'),
             redirect: '/list/search/article',
-            meta: { title: 'menu.list.search-list', keepAlive: true, permission: ['table'] },
+            meta: { title: 'menu.list.search-list', keepAlive: false, permission: ['table'] },
             children: [
               {
                 path: '/list/search/article',
@@ -178,26 +195,28 @@ export const asyncRouterMap = [
         path: '/exception',
         name: 'exception',
         component: RouteView,
+        /* hideChildrenInMenu: true,
+        hidden: true, */
         redirect: '/exception/403',
-        meta: { title: 'menu.exception', icon: 'warning', permission: ['exception'] },
+        meta: { title: 'menu.exception', hidden: true, icon: 'warning', permission: ['exception'] },
         children: [
           {
             path: '/exception/403',
             name: 'Exception403',
-            component: () => import(/* webpackChunkName: "fail" */ '@/views/exception/403'),
-            meta: { title: 'menu.exception.not-permission', permission: ['exception'] }
+            component: () => import('@/views/exception/403'),
+            meta: { title: 'menu.exception.not-permission', hidden: true, permission: ['exception'] }
           },
           {
             path: '/exception/404',
             name: 'Exception404',
-            component: () => import(/* webpackChunkName: "fail" */ '@/views/exception/404'),
-            meta: { title: 'menu.exception.not-find', permission: ['exception'] }
+            component: () => import('@/views/exception/404'),
+            meta: { title: 'menu.exception.not-find', hidden: true, permission: ['exception'] }
           },
           {
             path: '/exception/500',
             name: 'Exception500',
-            component: () => import(/* webpackChunkName: "fail" */ '@/views/exception/500'),
-            meta: { title: 'menu.exception.server-error', permission: ['exception'] }
+            component: () => import('@/views/exception/500'),
+            meta: { title: 'menu.exception.server-error', hidden: true, permission: ['exception'] }
           }
         ]
       },
@@ -208,19 +227,19 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/account/center',
         name: 'account',
-        meta: { title: 'menu.account', icon: 'user', keepAlive: true, permission: ['user'] },
+        meta: { title: 'menu.account', icon: 'user', keepAlive: false, permission: ['user'] },
         children: [
           {
             path: '/account/center',
             name: 'center',
             component: () => import('@/views/account/center'),
-            meta: { title: 'menu.account.center', keepAlive: true, permission: ['user'] }
+            meta: { title: 'menu.account.center', keepAlive: false, permission: ['user'] }
           },
           {
             path: '/account/settings',
             name: 'settings',
             component: () => import('@/views/account/settings/Index'),
-            meta: { title: 'menu.account.settings', hideHeader: true, permission: ['user'] },
+            meta: { title: 'menu.account.settings', hideHeader: false, permission: ['user'] },
             redirect: '/account/settings/basic',
             hideChildrenInMenu: true,
             children: [
@@ -245,13 +264,18 @@ export const asyncRouterMap = [
                 path: '/account/settings/custom',
                 name: 'CustomSettings',
                 component: () => import('@/views/account/settings/Custom'),
-                meta: { title: 'account.settings.menuMap.custom', hidden: true, keepAlive: true, permission: ['user'] }
+                meta: { title: 'account.settings.menuMap.custom', hidden: true, keepAlive: false, permission: ['user'] }
               },
               {
                 path: '/account/settings/binding',
                 name: 'BindingSettings',
                 component: () => import('@/views/account/settings/Binding'),
-                meta: { title: 'account.settings.menuMap.binding', hidden: true, keepAlive: true, permission: ['user'] }
+                meta: {
+                  title: 'account.settings.menuMap.binding',
+                  hidden: true,
+                  keepAlive: false,
+                  permission: ['user']
+                }
               },
               {
                 path: '/account/settings/notification',

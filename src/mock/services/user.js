@@ -2,7 +2,6 @@ import Mock from 'mockjs2'
 import { builder } from '../util'
 
 const info = options => {
-  console.log('options', options)
   const userInfo = {
     id: '4291d7da9005377ec9aec4a71ea837f',
     name: '天野远子',
@@ -29,6 +28,7 @@ const info = options => {
     creatorId: 'system',
     createTime: 1497160610259,
     deleted: 0,
+    permissionList: [],
     permissions: [
       {
         roleId: 'admin',
@@ -465,13 +465,6 @@ const info = options => {
   return builder(userInfo)
 }
 
-/**
- * 使用 用户登录的 token 获取用户有权限的菜单
- * 返回结构必须按照这个结构体形式处理，或根据
- * /src/router/generator-routers.js  文件的菜单结构处理函数对应即可
- * @param {*} options
- * @returns
- */
 const userNav = options => {
   const nav = [
     // dashboard
@@ -529,7 +522,7 @@ const userNav = options => {
         icon: 'form',
         title: '表单页'
       },
-      redirect: '/form/base-form',
+      redirect: '/form/basic-form',
       component: 'RouteView'
     },
     {
@@ -717,7 +710,7 @@ const userNav = options => {
     },
 
     // Exception
-    {
+    /*  {
       name: 'exception',
       parentId: 0,
       id: 10024,
@@ -759,7 +752,7 @@ const userNav = options => {
       },
       component: 'Exception500'
     },
-
+ */
     // account
     {
       name: 'account',
@@ -794,12 +787,12 @@ const userNav = options => {
         hideChildren: true,
         show: true
       },
-      redirect: '/account/settings/basic',
+      redirect: '/account/settings/base',
       component: 'AccountSettings'
     },
     {
-      name: 'BasicSettings',
-      path: '/account/settings/basic',
+      name: 'BasicSetting',
+      path: '/account/settings/base',
       parentId: 10030,
       id: 10031,
       meta: {
@@ -839,7 +832,7 @@ const userNav = options => {
         title: '账户绑定',
         show: false
       },
-      component: 'BindingSettings'
+      component: 'BindingSetting'
     },
     {
       name: 'NotificationSettings',
@@ -851,10 +844,52 @@ const userNav = options => {
         show: false
       },
       component: 'NotificationSettings'
+    },
+    // TestComponent
+    {
+      name: 'testcomponents',
+      parentId: 0,
+      id: 10035,
+      meta: {
+        title: '组件测试',
+        icon: 'user',
+        show: true
+      },
+      redirect: '/testcomponents/test-button',
+      component: 'RouteView'
+    },
+    {
+      name: 'test-button',
+      parentId: 10035,
+      id: 10036,
+      meta: {
+        title: '按钮测试',
+        show: true
+      },
+      component: 'TestButton'
+    },
+    {
+      name: 'test-icon',
+      parentId: 10035,
+      id: 10037,
+      meta: {
+        title: '图标测试',
+        show: true
+      },
+      component: 'TestIcon'
+    },
+    {
+      name: 'test-grid',
+      parentId: 10035,
+      id: 10038,
+      meta: {
+        title: '栅格测试',
+        show: true
+      },
+      component: 'TestGrid'
     }
   ]
   const json = builder(nav)
-  console.log('json', json)
   return json
 }
 
