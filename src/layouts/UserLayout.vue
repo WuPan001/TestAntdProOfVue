@@ -9,7 +9,7 @@
           <div class="header">
             <a href="/">
               <img src="~@/assets/p&p.png" class="logo" alt="logo" />
-              <span class="title">Ant Design</span>
+              <span class="title">WP</span>
             </a>
           </div>
           <div class="desc">
@@ -25,9 +25,7 @@
             <a href="_self">隐私</a>
             <a href="_self">条款</a>
           </div>
-          <div class="copyright">
-            Copyright &copy; 2018 vueComponent
-          </div>
+          <div class="copyright">Copyright &copy; 2021 wp</div>
         </div>
       </div>
     </div>

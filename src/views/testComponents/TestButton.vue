@@ -33,8 +33,9 @@
           ><!--  gutter推荐使用 (16+8n)px,gutter数组形式 [水平间距, 垂直间距] -->
             <a-col :span="auto" :offset="0">
               <a-button type="primary" shape="circle">
-                <template #icon><WifiOutlined /></template></a-button
-              ></a-col>
+                <template #icon><!-- <WifiOutlined /> --></template></a-button
+              ></a-col
+            >
           </a-row>
         </a-col>
         <a-col :span="24" :offset="0" :order="1">
@@ -47,12 +48,12 @@
               { xs: 8, sm: 8, md: 8, lg: 8 }
             ]"
           ><!--  gutter推荐使用 (16+8n)px,gutter数组形式 [水平间距, 垂直间距] -->
-            <a-col :span="4" :offset="0" :order="1"><div style="background:#000; color:#FFF">content</div></a-col>
+            <a-col :span="4" :offset="0" :order="1"><div style="background: #000; color: #fff">content</div></a-col>
             <a-col :span="4" :offset="0" :order="2">content</a-col>
-            <a-col :flex="1" :offset="0" :order="4"><div style="background:#000; color:#FFF">content</div></a-col>
-            <a-col :flex="2" :offset="0" :order="5"><div style="background:red; color:#FFF">content</div></a-col>
-            <a-col flex="100px" :offset="0" :order="6"><div style="background:blue; color:#FFF">content</div></a-col>
-            <a-col flex="auto" :offset="0" :order="7"><div style="background:yellow; color:#FFF">content</div></a-col>
+            <a-col :flex="1" :offset="0" :order="4"><div style="background: #000; color: #fff">content</div></a-col>
+            <a-col :flex="2" :offset="0" :order="5"><div style="background: red; color: #fff">content</div></a-col>
+            <a-col flex="100px" :offset="0" :order="6"><div style="background: blue; color: #fff">content</div></a-col>
+            <a-col flex="auto" :offset="0" :order="7"><div style="background: yellow; color: #fff">content</div></a-col>
             <a-col
               :xs="{ span: 1, offset: 0, order: 8 }"
               :sm="{ span: 1, offset: 0, order: 8 }"
@@ -76,7 +77,7 @@
 <script>
 // @ is an alias to /src
 // import Test from "@/components/Test.vue";
-import { WifiOutlined } from '@ant-design/icons-vue'
+/* import { WifiOutlined } from '@ant-design/icons-vue' */
 export default {
   // 组件名称
   name: 'TestButton',
@@ -84,7 +85,7 @@ export default {
   props: {},
   // 局部注册的组件
   components: {
-    WifiOutlined: WifiOutlined
+    /*  WifiOutlined: WifiOutlined */
   },
   // 组件状态值
   data () {
