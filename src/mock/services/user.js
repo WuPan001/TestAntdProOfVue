@@ -1,7 +1,7 @@
 import Mock from 'mockjs2'
 import { builder } from '../util'
 
-const info = options => {
+const info = (options) => {
   const userInfo = {
     id: '4291d7da9005377ec9aec4a71ea837f',
     name: '天野远子',
@@ -465,7 +465,7 @@ const info = options => {
   return builder(userInfo)
 }
 
-const userNav = options => {
+const userNav = (options) => {
   const nav = [
     // dashboard
     {
@@ -887,6 +887,16 @@ const userNav = options => {
         show: true
       },
       component: 'TestGrid'
+    },
+    {
+      name: 'test-space',
+      parentId: 10035,
+      id: 10039,
+      meta: {
+        title: '间距测试',
+        show: true
+      },
+      component: 'TestSpace'
     }
   ]
   const json = builder(nav)
