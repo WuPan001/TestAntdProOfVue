@@ -23,6 +23,8 @@ const constantRouterComponents = {
   TestButton: () => import('@/views/testComponents/TestButton'),
   TestIcon: () => import('@/views/testComponents/TestIcon'),
   TestSpace: () => import('@/views/testComponents/TestSpace'),
+  TestDropdown: () => import('@/views/testComponents/TestDropdown'),
+  TestPagination: () => import('@/views/testComponents/TestPagination'),
 
   // form
   BasicForm: () => import('@/views/form/basicForm'),
@@ -92,7 +94,6 @@ export const generatorDynamicRouter = (token) => {
       .getCurrentUserNav(token)
       .then((res) => {
         const { result } = res
-        console.log(result)
         const menuNav = []
         const childrenNav = []
         //      后端数据, 根级树数组,  根级 PID

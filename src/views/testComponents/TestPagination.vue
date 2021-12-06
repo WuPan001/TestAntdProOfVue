@@ -2,7 +2,7 @@
   功能：功能描述
   作者：wp
   邮箱：wu_pan123@126.com
-  时间：2021年12月03日 13:51:15
+  时间：2021年12月06日 09:17:50
   版本：v1.0
   修改记录：
   修改内容：
@@ -10,80 +10,92 @@
   修改时间：
 -->
 <template>
-  <page-header-wrapper
-  ><!-- :title="false" -->
-    <!--  <template #content>
-      <div class="page-header-content">
-        <div class="avatar">
-          <a-avatar size="large" :src="currentUser.avatar" />
-        </div>
-        <div class="content">
-          <div class="content-title">
-            {{ timeFix }}，{{ user.name }}<span class="welcome-text">，{{ welcome }}</span>
-          </div>
-          <div>Hellow Antd Pro of Vue</div>
-        </div>
-      </div>
-    </template> -->
-    <!--  <template #extraContent>
-      <div class="extra-content">
-        <div class="stat-item">
-          <a-statistic title="项目数" :value="56" />
-        </div>
-        <div class="stat-item">
-          <a-statistic title="团队内排名" :value="8" suffix="/ 24" />
-        </div>
-        <div class="stat-item">
-          <a-statistic title="项目访问" :value="2223" />
-        </div>
-      </div>
-    </template> -->
-    <div class="test-grid" id="test-grid">
-      <a-row
-        type="flex"
-        justify="space-between"
-        align="middle"
-        :gutter="[
-          { xs: 8, sm: 8, md: 8, lg: 8 },
-          { xs: 8, sm: 8, md: 8, lg: 8 }
-        ]"
+  <page-header-wrapper>
+    <div class="test-pagination" id="test-pagination">
+      <a-space
+        direction="horizontal"
+        size="middle"
+      ><!-- :size="200" -->
+        <pagination
+          show-size-changer
+          showQuickJumper
+          v-model="currentPage"
+          :page-size-options="pageSizeOptions"
+          :default-current="1"
+          :total="total"
+          @change="onChange"
+          @showSizeChange="onshowSizeChange"
+        >
+          <template slot="buildOptionText" slot-scope="props">
+            <span v-if="props.value !== '500'">{{ props.value }}条/页</span>
+            <span v-if="props.value === '500'">全部</span>
+          </template>
+        </pagination>
+        <pagination
+          show-size-changer
+          showQuickJumper
+          v-model="currentPage"
+          :page-size-options="pageSizeOptions"
+          :default-current="1"
+          :total="total"
+          @change="onChange"
+          @showSizeChange="onshowSizeChange"
+        >
+          <template slot="buildOptionText" slot-scope="props">
+            <span v-if="props.value !== '500'">{{ props.value }}条/页</span>
+            <span v-if="props.value === '500'">全部</span>
+          </template>
+        </pagination></a-space
       >
-        <!-- gutter推荐使用 (16+8n)px,gutter数组形式 [水平间距, 垂直间距] -->
-        <a-col
-          :span="4"
-          :offset="0"
-          :order="1"
-        ><a-icon type="forward" /><a-icon type="up-circle" />
-          <a-icon
-            type="up-circle"
-            theme="twoTone"
-            two-tone-color="#eb2f96"
-            style="font-size: 200px"
-          /></a-col>
-      </a-row>
     </div>
   </page-header-wrapper>
 </template>
 <script>
 // @ is an alias to /src
 // import Test from "@/components/Test.vue";
+import { Pagination } from 'ant-design-vue'
+
 export default {
   // 组件名称
-  name: 'TestIcon',
+  name: 'TestPagination',
   // 组件参数 接收来自父组件的数据
   props: {},
   // 局部注册的组件
-  components: {},
+  components: {
+    Pagination
+  },
   // 组件状态值
   data () {
-    return {}
+    return {
+      currentPage: 1,
+      pageSize: 10,
+      total: 500,
+      pageSizeOptions: ['10', '20', '30', '500']
+    }
   },
   // 计算属性
   computed: {},
   // 侦听器
-  watch: {},
+  watch: {
+    currentPage (val) {
+      console.log('currentPage:', val)
+    },
+    pageSize (val) {
+      console.log('pageSize:', val)
+    }
+  },
   // 组件方法
-  methods: {},
+  methods: {
+    onChange (currentPage, pageSize) {
+      console.log('currentPage', currentPage, 'pageSize', pageSize)
+    },
+    onshowSizeChange (currentPage, pageSize) {
+      if (pageSize === '500') {
+        this.$data.pageSize = this.$data.total
+      }
+      this.$data.pageSize = pageSize
+    }
+  },
   // 以下是生命周期钩子   注：没用到的钩子请自行删除
   /**
    * 在实例初始化之后，组件属性计算之前，如data属性等

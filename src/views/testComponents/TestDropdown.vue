@@ -2,7 +2,7 @@
   功能：功能描述
   作者：wp
   邮箱：wu_pan123@126.com
-  时间：2021年12月03日 13:51:15
+  时间：2021年12月04日 16:11:59
   版本：v1.0
   修改记录：
   修改内容：
@@ -10,58 +10,62 @@
   修改时间：
 -->
 <template>
-  <page-header-wrapper
-  ><!-- :title="false" -->
-    <!--  <template #content>
-      <div class="page-header-content">
-        <div class="avatar">
-          <a-avatar size="large" :src="currentUser.avatar" />
-        </div>
-        <div class="content">
-          <div class="content-title">
-            {{ timeFix }}，{{ user.name }}<span class="welcome-text">，{{ welcome }}</span>
-          </div>
-          <div>Hellow Antd Pro of Vue</div>
-        </div>
-      </div>
-    </template> -->
-    <!--  <template #extraContent>
-      <div class="extra-content">
-        <div class="stat-item">
-          <a-statistic title="项目数" :value="56" />
-        </div>
-        <div class="stat-item">
-          <a-statistic title="团队内排名" :value="8" suffix="/ 24" />
-        </div>
-        <div class="stat-item">
-          <a-statistic title="项目访问" :value="2223" />
-        </div>
-      </div>
-    </template> -->
-    <div class="test-grid" id="test-grid">
-      <a-row
-        type="flex"
-        justify="space-between"
-        align="middle"
-        :gutter="[
-          { xs: 8, sm: 8, md: 8, lg: 8 },
-          { xs: 8, sm: 8, md: 8, lg: 8 }
-        ]"
-      >
-        <!-- gutter推荐使用 (16+8n)px,gutter数组形式 [水平间距, 垂直间距] -->
-        <a-col
-          :span="4"
-          :offset="0"
-          :order="1"
-        ><a-icon type="forward" /><a-icon type="up-circle" />
-          <a-icon
-            type="up-circle"
-            theme="twoTone"
-            two-tone-color="#eb2f96"
-            style="font-size: 200px"
-          /></a-col>
-      </a-row>
-    </div>
+  <page-header-wrapper>
+    <a-space
+      direction="horizontal"
+      size="middle"
+    ><!-- :size="200" -->
+      <a-dropdown-button
+        @click="handleButtonClick"
+      >TestDropdown
+        <template
+          #overlay
+        ><a-menu>
+          <a-menu-item
+            @click="handleMenuClick"
+            v-for="(item, index) in data"
+            :key="index"
+            :disabled="item.disabled"
+          ><a-icon :type="item.type" /> {{ item.content }}</a-menu-item
+          >
+        </a-menu></template
+        >
+        <template #icon> <a-icon type="up-circle" theme="twoTone" two-tone-color="#52c41a" /></template>
+      </a-dropdown-button>
+      <a-dropdown-button
+        @click="handleButtonClick"
+      >TestDropdown
+        <template
+          #overlay
+        ><a-menu>
+          <a-menu-item
+            @click="handleMenuClick"
+            v-for="(item, index) in data"
+            :key="index"
+          ><a-icon :type="item.type" /> {{ item.content }}</a-menu-item
+          >
+        </a-menu></template
+        >
+        <template #icon> <a-icon type="up-circle" theme="twoTone" two-tone-color="#52c41a" /></template>
+      </a-dropdown-button>
+      <a-dropdown-button
+        @click="handleButtonClick"
+      >TestDropdown
+        <template
+          #overlay
+        ><a-menu>
+          <a-menu-item
+            @click="handleMenuClick"
+            v-for="(item, index) in data"
+            :key="index"
+            :disabled="item.disabled"
+          ><a-icon :type="item.type" /> {{ item.content }}</a-menu-item
+          >
+        </a-menu></template
+        >
+        <template #icon> <a-icon type="up-circle" theme="twoTone" two-tone-color="#52c41a" /></template>
+      </a-dropdown-button>
+    </a-space>
   </page-header-wrapper>
 </template>
 <script>
@@ -69,21 +73,46 @@
 // import Test from "@/components/Test.vue";
 export default {
   // 组件名称
-  name: 'TestIcon',
+  name: 'Demo',
   // 组件参数 接收来自父组件的数据
   props: {},
   // 局部注册的组件
   components: {},
   // 组件状态值
   data () {
-    return {}
+    return {
+      data: [
+        {
+          type: 'up-circle',
+          content: 'TestContent1',
+          disabled: false
+        },
+        {
+          type: 'user',
+          content: 'TestContent2',
+          disabled: false
+        },
+        {
+          type: 'user',
+          content: 'TestContent3',
+          disabled: true
+        }
+      ]
+    }
   },
   // 计算属性
   computed: {},
   // 侦听器
   watch: {},
   // 组件方法
-  methods: {},
+  methods: {
+    handleButtonClick (e) {
+      console.log('click left button', e)
+    },
+    handleMenuClick (e) {
+      console.log('click', e)
+    }
+  },
   // 以下是生命周期钩子   注：没用到的钩子请自行删除
   /**
    * 在实例初始化之后，组件属性计算之前，如data属性等

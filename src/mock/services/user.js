@@ -852,7 +852,7 @@ const userNav = (options) => {
       id: 10035,
       meta: {
         title: '组件测试',
-        icon: 'user',
+        icon: 'setting',
         show: true
       },
       redirect: '/testcomponents/test-button',
@@ -897,6 +897,27 @@ const userNav = (options) => {
         show: true
       },
       component: 'TestSpace'
+    },
+    {
+      name: 'test-dropdown',
+      parentId: 10035,
+      id: 10039,
+      meta: {
+        title: '下拉菜单测试',
+        icon: 'dropbox',
+        show: true
+      },
+      component: 'TestDropdown'
+    },
+    {
+      name: 'test-pagination',
+      parentId: 10035,
+      id: 10040,
+      meta: {
+        title: '分页测试',
+        show: true
+      },
+      component: 'TestPagination'
     }
   ]
   const json = builder(nav)
